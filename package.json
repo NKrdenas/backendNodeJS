@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/NKardenas/backendNodeJS/issues"
   },
-  "homepage": "https://github.com/NKardenas/backendNodeJS#readme"
+  "homepage": "https://github.com/NKardenas/backendNodeJS#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
