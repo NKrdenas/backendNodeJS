@@ -25,9 +25,9 @@ router.post('/message', (req, res) => {
         response.succes(req, res, 'Creado correctamente', 201)
     }
     // res.status(201).send({error: "", body: 'Creado Correctamente'})
-    
-
 })
+
+app.use('/app', express.static('public'))
 
 app.listen(3000)
 console.log('Listening: 3000');
