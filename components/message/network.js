@@ -24,5 +24,14 @@ router.post('/', (req, res) => {
         response.error(req, res, 'Informacion invalida', 400, 'Error en el controlador')
         })
 })
+router.patch('/:id', function (req, res){
+    controller.updateMessage(req.params.id, req.body.message)
+        .then((data) => {
+            response.succes(req,res, data, 200)
+        })
+        .catch((e) => {
+            response.error(req, res, 'Error Interno', 500)
+        })
+})
 
 module.exports = router

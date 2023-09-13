@@ -23,9 +23,20 @@ async function getMessage(){
     return messages
 }
 
+async function updateText(id, message){
+    const foundMessage = await Model.findOne({
+        _id : id
+    })
+
+    foundMessage.message = message
+    const newMessage = await foundMessage.save()
+    return newMessage
+}
+
 module.exports = {
     add: addMesage,
-    list:  getMessage
+    list:  getMessage,
+    updateText: updateText
 }
 
 //l5n9SRYeKfGtEw1h: UsuarioDefinitvo
