@@ -35,5 +35,3 @@ module.exports = {
     updateText: updateText,
     remove: removeMessage
 }
-
-//l5n9SRYeKfGtEw1h: UsuarioDefinitvo
