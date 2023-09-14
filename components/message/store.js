@@ -37,10 +37,15 @@ async function updateText(id, message){
     return newMessage
 }
 
+function removeMessage(id){
+    return Model.findByIdAndDelete(id)
+}
+
 module.exports = {
     add: addMesage,
     list:  getMessage,
-    updateText: updateText
+    updateText: updateText,
+    remove: removeMessage
 }
 
 //l5n9SRYeKfGtEw1h: UsuarioDefinitvo
