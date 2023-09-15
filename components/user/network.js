@@ -14,10 +14,9 @@ router.post('/', function(req, res){
 })
 
 router.get('/', function(req, res){
-    const filterUsers = req.query.name || null
-    controller.getUsers(filterUsers)
-        .then((userList) => {
-            response.succes(req, res, userList, 200)
+    controller.listUsers()
+        .then(users => {
+            response.succes(req, res, users, 200)
         })
         .catch(e => {
             response.error(req, res, 'Unexpected error', 500, e)
