@@ -1,10 +1,21 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router()
 const response = require('../../network/response')
 const controller = require('./controller');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./uploads");
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+  });
+  
+  const upload = multer({ storage: storage });
 
 router.get('/', (req, res) => {
-    const filterMessages = req.query.user || null;
+    const filterMessages = req.query.chat || null;
     controller.getMessages(filterMessages)
         .then((messageList) => {
             response.succes(req, res, messageList, 200)
@@ -14,15 +25,15 @@ router.get('/', (req, res) => {
         })
 })
 
-router.post('/', (req, res) => {
+router.post('/', upload.single('file'), (req, res) => {
 
-    controller.addMesage(req.body.user, req.body.message)
+    controller.addMesage(req.body.chat, req.body.user, req.body.message, req.file)
         .then((fullMessage)=>{
             response.succes(req, res, fullMessage, 201)
         })
         .catch(e => {
             
-        response.error(req, res, 'Informacion invalida', 400, 'Error en el controlador')
+        response.error(req, res, 'Informacion invalida', 400, "Error en el Controller")
         })
 })
 router.patch('/:id', function (req, res){

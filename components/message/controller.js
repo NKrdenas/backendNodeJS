@@ -1,12 +1,19 @@
 const store = require('./store');
 
-function addMesage(user, message){
+function addMesage(chat, user, message, file){
     return new Promise((resolve, reject) =>{
-        if (!user || !message){
+        if (!chat || !user || !message){
             console.error("[messageController]: No se encuentra usuario y/o mensaje");
             return reject('Los datos no coinciden')
         }
+
+        let fileUrl = ''
+        if(file){
+            fileUrl = 'http://loclahost:3000/app/files' + file.filename
+        }
+
         const fullMessage = {
+            chat: chat,
             user: user,
             message: message,
             date: new Date()
@@ -18,9 +25,9 @@ function addMesage(user, message){
     })
 }
 
-function getMessages(filterUser){
+function getMessages(filterChat){
     return new Promise((resolve, reject)=> {
-        resolve(store.list(filterUser))
+        resolve(store.list(filterChat))
     })
 }
 
