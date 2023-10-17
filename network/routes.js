@@ -7,6 +7,7 @@ const routes = function(server){
     server.use('/message', message)
     server.use('/user', user)
     server.use('/chat', chat)
+    server.use(express.static('public'));
 }
 
 module.exports = routes

@@ -7,16 +7,17 @@ function addMesage(chat, user, message, file){
             return reject('Los datos no coinciden')
         }
 
-        let fileUrl = ''
-        if(file){
-            fileUrl = 'http://loclahost:3000/app/files' + file.filename
-        }
+        let fileUrl = '';
+         if (file) {
+            fileUrl = 'http://localhost3000:/files/' + file.filename;
+  }     
 
         const fullMessage = {
             chat: chat,
             user: user,
             message: message,
-            date: new Date()
+            date: new Date(),
+            file: fileUrl
         }
 
         store.add(fullMessage)
